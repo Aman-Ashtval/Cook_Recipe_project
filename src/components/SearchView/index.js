@@ -1,16 +1,11 @@
 import { FiSearch } from "react-icons/fi";
 
-import Header from "../Header"
+import "./index.css"
 
-import './index.css'
+const SearchView = () => {
 
-const Home = () => {
-
-    return <>
-        <Header />
-        <div className="container-md container-fluid mt-5">
-            <div className="row">
-
+    return (
+        <>
                 {/* nuddle section 1 */}
                 <div className="col-2 col-md-2 col-lg-3">
                     <div className="d-flex flex-column justify-content-center align-items-center h-100">
@@ -51,13 +46,8 @@ const Home = () => {
                         <p className="text-white m-0 ml-3">Images: <span className="number-color">200</span></p>
                     </div>
                 </div>
+        </>
+    );
+}
 
-                <div className="col-12">                    
-                    <hr className="search-section-hr" />
-                </div>
-            </div>
-        </div>
-    </>
-} 
-
-export default Home
+export default SearchView
