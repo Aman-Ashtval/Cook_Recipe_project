@@ -1,0 +1,22 @@
+.filter-button{
+    color: #ec7b02;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    background-color: transparent;
+}
+
+.filter-button:hover{
+    color: antiquewhite;
+}
+
+.filter-button:focus{
+    color: antiquewhite;
+}
+
+.symbole{
+    color: antiquewhite;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0px 2px 0px 2px;
+}
