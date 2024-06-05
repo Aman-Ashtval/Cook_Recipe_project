@@ -2,7 +2,10 @@ import { FiSearch } from "react-icons/fi";
 
 import "./index.css"
 
-const SearchView = () => {
+const SearchView = props => {
+    const {onChangeUserInput, userInput} = props
+
+    const onHandleUserInput = event => onChangeUserInput(event.target.value);
 
     return (
         <>
@@ -18,7 +21,7 @@ const SearchView = () => {
                     <div className="d-flex flex-column justify-content-center align-items-center h-100">
                         <h1 className="welcome-h1">Welcome to CookRecipe</h1>
                         <div className="d-flex align-items-center w-100">
-                            <input type="search" placeholder="search for Recipe..." className="search-input" />
+                            <input type="search" placeholder="search for Recipe..." value={userInput} className="search-input" onChange={onHandleUserInput} />
                             <button type="button" className="search-btn">
                                 <FiSearch />
                             </button>

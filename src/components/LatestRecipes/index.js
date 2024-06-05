@@ -14,9 +14,10 @@ for(let i=65; i<91; i++){
     buttonList.push({id: uuidv4(), value: String.fromCharCode(i)})
 }
 
-console.log(buttonList)
 
-const LatestRecipes = () => {
+const LatestRecipes = props => {
+
+    const {userInput} = props
 
     const [recipesList, setRecipesList] = useState([]);
     const [activeChar, setActiveChar] = useState('');
@@ -35,7 +36,6 @@ const LatestRecipes = () => {
         try {
             const response = await fetch(url, options);
             const data = await response.json();
-            console.log(data);
             setRecipesList(data);
         } catch (error) {
             console.error(error);
@@ -50,10 +50,11 @@ const LatestRecipes = () => {
     // render recipes cards
     const renderRecipeCardView = () =>{
         const filteredRecipeList = activeChar !== "" ? recipesList.filter(each => each.title.charAt(0).toUpperCase() === activeChar) : recipesList;
+        const filterRecipeByUserInput = filteredRecipeList.filter(each => each.title.toLowerCase().includes(userInput.toLowerCase()));
         return (
             <>
                 {
-                    filteredRecipeList.map(recipe => <RecipeCard key={recipe.id} recipeDetails={recipe} />)
+                    filterRecipeByUserInput.map(recipe => <RecipeCard key={recipe.id} recipeDetails={recipe} />)
                 }
                 <div className="col-12 mt-5 mb-5">                   
                     <h2 className="latest-recipe mt-5 mb-4">Brows By Name</h2>  
