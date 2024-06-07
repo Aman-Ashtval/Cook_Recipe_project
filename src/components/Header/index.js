@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {Link} from "react-router-dom"
 import { ImMenu } from "react-icons/im";
 
 import './index.css'
@@ -12,11 +13,15 @@ const menuList = [
     },
     {
         id: 2,
-        content: "About",
+        content: "Favorite",
     },
     {
         id: 3,
-        content: "Contact Us",
+        content: "About",
+    },
+    {
+        id: 4,
+        content: "Contact",
     }
 ]
 
@@ -32,15 +37,18 @@ const Header = () => {
                     <div className="col-12 p-0">
                         <div className='custome-row p-2 p-md-0'>                        
                             {/* chef recipe logo section */}
-                            <div className='d-flex align-items-center cursor-pointer '>
-                                <img src="https://img.freepik.com/premium-vector/smiling-chef-cartoon-character-holding-platter_266639-108.jpg?w=740" alt="chef logo" className='logo' />
-                                <h1 className='logo-h1'>CookRecipe</h1>
-                            </div>
+                            <Link to="/" className='text-decoration-none'>
+                                <div className='d-flex align-items-center cursor-pointer '>
+                                    <img src="https://img.freepik.com/premium-vector/smiling-chef-cartoon-character-holding-platter_266639-108.jpg?w=740" alt="chef logo" className='logo' />
+                                    <h1 className='logo-h1'>CookRecipe</h1>
+                                </div>
+                            </Link>
                             <div className='menu-list d-none d-md-block'>
                                 {
                                     menuList.map(each => {
                                         const onActiveItem = () => onChangeMenuItem(each.id);
-                                        return <a key={each.id} className={`menu-link ${each.id === activeMenuItemId ? 'active' : null}`} onClick={onActiveItem}>{each.content}</a>
+                                        const target = each.content === "Home" ? "" : each.content.toLowerCase();
+                                        return <Link to={`/${target}`} key={each.id} className={`menu-link ${each.id === activeMenuItemId ? 'active' : null}`} onClick={onActiveItem}>{each.content}</Link>
                                     })
                                 }
                             </div>
