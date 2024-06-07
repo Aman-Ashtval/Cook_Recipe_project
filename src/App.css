@@ -6,3 +6,9 @@
 body{
   background-color: #2d2013;
 }
+
+.app-bg{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
