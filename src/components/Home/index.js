@@ -1,9 +1,7 @@
 import { useState, useCallback } from "react"
 
-import Header from "../Header"
 import SearchView from "../SearchView"
 import LatestRecipes from "../LatestRecipes"
-import Footer from "../Footer"
 
 import './index.css'
 
@@ -13,8 +11,7 @@ const Home = () => {
 
     const onChangeUserInput = useCallback(searchValue => setUserInput(searchValue), []);
 
-    return <>
-        <Header />
+    return (
         <div className="container-md container-fluid mt-5">
             <div className="row">                
                 <SearchView onChangeUserInput={onChangeUserInput} userInput={userInput} /> 
@@ -25,8 +22,7 @@ const Home = () => {
                 <LatestRecipes userInput={userInput} />
             </div>
         </div>
-        <Footer />
-    </>
+    );
 } 
 
 export default Home
