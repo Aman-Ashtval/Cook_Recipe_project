@@ -1,0 +1,48 @@
+.about-bg{
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-p, .about-content{
+    color: antiquewhite;
+    font-size: 16px;
+    font-weight: 550;
+}
+
+.about-content{
+    font-size: 14px;
+    font-weight: 450;
+    text-align: justify;
+    width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+    .about-content{
+        width: 90%;
+    }
+}
+
+.chef-img{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    animation-name: image-rotaion;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+@media screen and (max-width: 576px) {
+    .chef-img{
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@keyframes image-rotaion {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(720deg); box-shadow: rgba(228, 228, 233, 0.2) 0px 7px 29px 5px;}
+}
+
