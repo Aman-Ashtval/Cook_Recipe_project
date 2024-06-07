@@ -5,6 +5,7 @@ import Home from './components/Home'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AboutSection from './components/AboutSection';
+import ContactSection from './components/ContactSection';
 
 import './App.css';
 
@@ -17,6 +18,7 @@ class App extends Component{
                     <Routes>
                         <Route exact path='/' Component={Home} />
                         <Route exact path='/about' Component={AboutSection} />
+                        <Route exact path='/contact' Component={ContactSection} />
                     </Routes>  
                 <Footer />                  
             </BrowserRouter>
