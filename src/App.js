@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import AboutSection from './components/AboutSection';
 import ContactSection from './components/ContactSection';
+import RecipeDetails from './components/RecipeDetails';
 
 import './App.css';
 
@@ -19,6 +20,7 @@ class App extends Component{
                         <Route exact path='/' Component={Home} />
                         <Route exact path='/about' Component={AboutSection} />
                         <Route exact path='/contact' Component={ContactSection} />
+                        <Route exact path='/recipe/:id' Component={RecipeDetails} />
                     </Routes>  
                 <Footer />                  
             </BrowserRouter>
