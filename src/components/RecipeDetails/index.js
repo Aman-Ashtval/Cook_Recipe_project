@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import {useParams, Link} from "react-router-dom"
 import {v4 as uuidv4} from 'uuid'
 import { ImArrowDown } from "react-icons/im";
@@ -17,28 +17,28 @@ const responseConstant = {
     inProgress: "IN_PROGRESS",
 }
 
-const RecipeDetails = props => {
+const RecipeDetails = () => {
+    
+    const favoriteRecipesList = JSON.parse(localStorage.getItem('favoriteRecipesList'));
     
     const {id} = useParams();
     const [recipeDetails, setRecipeDetails] = useState({});
     const [responseStatus, setResponseStatus] = useState(responseConstant.inProgress)
-    const [isFavorite, setIsFacorite] = useState(false)
+    const [isFavorite, setIsFavorite] = useState(favoriteRecipesList.some(each => each.id === id ))
 
     const onToggleFavorite = () => {
         if(isFavorite){
-            const favoriteRecipesList = JSON.parse(localStorage.getItem('favoriteRecipesList'));
             const filteredFavoriteRecipesList = favoriteRecipesList.filter(each => each.id !== id);
             localStorage.setItem('favoriteRecipesList', JSON.stringify(filteredFavoriteRecipesList));
-            setIsFacorite(false)
+            setIsFavorite(false)
         }else{
-            const favoriteRecipesList = JSON.parse(localStorage.getItem('favoriteRecipesList'));
-            const updatedFavoriteRecipesList = [...favoriteRecipesList, recipeDetails];
+            const updatedFavoriteRecipesList = favoriteRecipesList.includes(recipeDetails) ? favoriteRecipesList : [...favoriteRecipesList, recipeDetails];
             localStorage.setItem('favoriteRecipesList', JSON.stringify(updatedFavoriteRecipesList));
-            setIsFacorite(true)
+            setIsFavorite(true)
         }
     }
 
-    const getRecipeDetails = async() => {
+    const getRecipeDetails = useCallback(async() => {
         const url = `https://chinese-food-db.p.rapidapi.com/${id}`;
         const options = {
             method: 'GET',
@@ -57,17 +57,15 @@ const RecipeDetails = props => {
         }else{
             setResponseStatus(responseConstant.failure);
         }
-    }
+    }, [id])
 
     useEffect(() => {
         getRecipeDetails()
-    }, [])
+    },[getRecipeDetails])
 
 
     // render success view
     const renderSuccessView = () => {
-        
-        console.log(JSON.parse(localStorage.getItem('favoriteRecipesList')))
         const {image, title, ingredients, description, time, method} = recipeDetails
         let count = 1;
         return(
