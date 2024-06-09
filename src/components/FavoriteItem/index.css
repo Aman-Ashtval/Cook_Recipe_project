@@ -1,0 +1,13 @@
+.favorite-bg{
+    flex-grow: 1;
+}
+
+.fav-search-container{
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .fav-search-container{
+        width: 60%;
+    }
+}
