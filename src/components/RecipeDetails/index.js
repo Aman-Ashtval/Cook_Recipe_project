@@ -24,7 +24,19 @@ const RecipeDetails = props => {
     const [responseStatus, setResponseStatus] = useState(responseConstant.inProgress)
     const [isFavorite, setIsFacorite] = useState(false)
 
-    const onToggleFavorite = () => setIsFacorite(prevState => !prevState)
+    const onToggleFavorite = () => {
+        if(isFavorite){
+            const favoriteRecipesList = JSON.parse(localStorage.getItem('favoriteRecipesList'));
+            const filteredFavoriteRecipesList = favoriteRecipesList.filter(each => each.id !== id);
+            localStorage.setItem('favoriteRecipesList', JSON.stringify(filteredFavoriteRecipesList));
+            setIsFacorite(false)
+        }else{
+            const favoriteRecipesList = JSON.parse(localStorage.getItem('favoriteRecipesList'));
+            const updatedFavoriteRecipesList = [...favoriteRecipesList, recipeDetails];
+            localStorage.setItem('favoriteRecipesList', JSON.stringify(updatedFavoriteRecipesList));
+            setIsFacorite(true)
+        }
+    }
 
     const getRecipeDetails = async() => {
         const url = `https://chinese-food-db.p.rapidapi.com/${id}`;
@@ -54,6 +66,8 @@ const RecipeDetails = props => {
 
     // render success view
     const renderSuccessView = () => {
+        
+        console.log(JSON.parse(localStorage.getItem('favoriteRecipesList')))
         const {image, title, ingredients, description, time, method} = recipeDetails
         let count = 1;
         return(
@@ -64,9 +78,12 @@ const RecipeDetails = props => {
                 {/* recipe image section */}
                 <div className="col-12 col-md-6">
                     <div className="p-3">
-                        <button type="button" className="fav-btn" onClick={onToggleFavorite}>
-                            {isFavorite ? <BsFillStarFill className="text-warning" />: <BsStar />}
-                        </button>
+                        <div className="d-flex justify-content-between align-items-center mb-1">
+                            <p className="ingredients-p m-0 p-0">Add to favorite</p>
+                            <button type="button" className="fav-btn" onClick={onToggleFavorite}>
+                                {isFavorite ? <BsFillStarFill className="text-warning" />: <BsStar />}
+                            </button>
+                        </div>
                         <img src={image} alt={title} className="w-100" />
                         <p className="recipe-details-title">{title}</p>
                     </div>

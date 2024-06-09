@@ -61,10 +61,9 @@
 
 .fav-btn{
     color: antiquewhite;
-    font-size: 25px;
+    font-size: 20px;
     background-color: transparent;
     border: none;
-    padding: 5px;
     cursor: pointer;
 }
 
