@@ -5,6 +5,7 @@ import { ImArrowDown } from "react-icons/im";
 import { BsFillStarFill, BsStar } from "react-icons/bs";
 
 import Loader from "../Loader"
+import FailureView from "../FailureView";
 
 import "./index.css"
 
@@ -35,14 +36,14 @@ const RecipeDetails = props => {
             }
         };
 
-        try {
-            const response = await fetch(url, options);
-            const result = await response.json();
-            console.log(result);
-            setRecipeDetails(result);
+        const response = await fetch(url, options);
+
+        if(response.ok){
+            const data = await response.json();
+            setRecipeDetails(data);
             setResponseStatus(responseConstant.success);
-        } catch (error) {
-            console.error(error);
+        }else{
+            setResponseStatus(responseConstant.failure);
         }
     }
 
@@ -136,7 +137,7 @@ const RecipeDetails = props => {
             case responseConstant.success: 
                 return renderSuccessView();
             case responseConstant.failure: 
-                return null;
+                return <FailureView />;
             case responseConstant.inProgress: 
                 return <Loader />;                                
         
