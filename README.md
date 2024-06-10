@@ -2,9 +2,25 @@
 
 This is an online cooking learning app where an user can search defferent type of cooking recipes and mark them favorite to watch latter, etc.
 
-## Demo
+## App Views
 
-- Login views
+- home views
+  
+![Screenshot](https://res.cloudinary.com/dh4dcboea/image/upload/v1718029901/Screenshot_2024-06-10_195828_wkmap4.png) 
+
+- favorite item views
+
+![Screenshot](https://res.cloudinary.com/dh4dcboea/image/upload/v1718029899/Screenshot_2024-06-10_200029_ps01sd.png) 
+
+![Screenshot](https://res.cloudinary.com/dh4dcboea/image/upload/v1718029898/Screenshot_2024-06-10_195857_ldkp7c.png) 
+
+- about view
+
+![Screenshot](https://res.cloudinary.com/dh4dcboea/image/upload/v1718029897/Screenshot_2024-06-10_195912_boorag.png)
+
+- contact view
+
+![Screenshot](https://res.cloudinary.com/dh4dcboea/image/upload/v1718029897/Screenshot_2024-06-10_195926_i1gv95.png)
 
 [Watch the Demo](https://res.cloudinary.com/dh4dcboea/video/upload/v1718025709/2024-06-10_18-43-56_krqxrc.mkv)
 
