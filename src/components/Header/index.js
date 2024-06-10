@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import {Link} from "react-router-dom"
+import {Link, useLocation} from "react-router-dom"
 import { ImMenu } from "react-icons/im";
 
 import './index.css'
@@ -10,25 +9,29 @@ const menuList = [
     {
         id: 1,
         content: "Home",
+        path: '/'
     },
     {
         id: 2,
         content: "Favorite",
+        path: '/favorite'
     },
     {
         id: 3,
         content: "About",
+        path: '/about'
     },
     {
         id: 4,
         content: "Contact",
+        path: '/contact'
     }
 ]
 
 const Header = () => {
 
-    const[activeMenuItemId, setActiveMenuItemId] = useState(menuList[0].id);
-    const onChangeMenuItem = id => setActiveMenuItemId(id);
+    const location = useLocation();
+    const currentPath = location.pathname
 
     return (
         <header className="header-bg">
@@ -46,9 +49,8 @@ const Header = () => {
                             <div className='menu-list d-none d-md-block'>
                                 {
                                     menuList.map(each => {
-                                        const onActiveItem = () => onChangeMenuItem(each.id);
                                         const target = each.content === "Home" ? "" : each.content.toLowerCase();
-                                        return <Link to={`/${target}`} key={each.id} className={`menu-link ${each.id === activeMenuItemId ? 'active' : null}`} onClick={onActiveItem}>{each.content}</Link>
+                                        return <Link to={`/${target}`} key={each.id} className={`menu-link ${each.path === currentPath ? 'active' : null}`}>{each.content}</Link>
                                     })
                                 }
                             </div>
@@ -68,12 +70,13 @@ const Header = () => {
                                             <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div className="custom-body">                                        {
-                                                menuList.map(each => {
-                                                        const onActiveItem = () => onChangeMenuItem(each.id);
-                                                        return <a key={each.id} className={`menu-link mb-3 ${each.id === activeMenuItemId ? 'active' : null}`} onClick={onActiveItem}>{each.content}</a>
-                                                    })
-                                                }
+                                        <div className="custom-body">                                        
+                                            {
+                                                menuList.map(each => {                                                    
+                                                    const target = each.content === "Home" ? "" : each.content.toLowerCase();
+                                                    return <Link to={`/${target}`} key={each.id} className={`menu-link mb-3 ${each.path === currentPath ? 'active' : null}`}>{each.content}</Link>
+                                                })
+                                            }
                                         </div>
                                     </div>
                                 </div>
